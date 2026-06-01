@@ -80,7 +80,7 @@ export default function Home() {
                 <div className="relative">
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full blur-3xl opacity-30 glow-pulse" />
                   <img
-                    src="/manus-storage/wsp-logo_bbf88506.svg"
+                    src="/logo.svg"
                     alt="WSP Finance"
                     className="h-32 md:h-40 lg:h-48 relative z-10"
                   />
@@ -97,6 +97,16 @@ export default function Home() {
                 <p className="text-xl md:text-2xl text-cyan-300 font-poppins font-semibold">
                   Gestão financeira e contábil para MEIs, pequenos negócios e contadores
                 </p>
+                <div className="mt-4 inline-flex items-center gap-2 px-5 py-2 rounded-full bg-purple-500/15 border border-purple-500/40 text-purple-300 text-sm font-semibold">
+                  🎓 MVP Acadêmico · Apresentação Final
+                </div>
+                <div className="mt-5 flex flex-wrap justify-center gap-x-6 gap-y-1 text-sm text-gray-400">
+                  <span>Wellington Siqueira Porto</span>
+                  <span className="text-purple-500/60">•</span>
+                  <span>Arthur Dos Anjos</span>
+                  <span className="text-purple-500/60">•</span>
+                  <span>Kauã Hiro</span>
+                </div>
               </motion.div>
 
               {/* Descrição */}
@@ -205,51 +215,62 @@ export default function Home() {
               </motion.div>
 
               {/* Fluxo visual */}
-              <div className="space-y-8">
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="glass-card p-8 border-l-4 border-purple-500"
-                >
-                  <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold text-white mb-2">Workspaces separados</h3>
-                      <p className="text-gray-300">Separação entre contexto pessoal e empresarial</p>
-                    </div>
-                    <ChevronDown className="text-purple-400 md:hidden" size={24} />
-                    <ChevronDown className="text-purple-400 hidden md:block rotate-90" size={24} />
-                  </div>
-                </motion.div>
+              {/* Fluxo visual em pipeline */}
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-10">
+                {[
+                  { label: "Workspaces separados", color: "border-purple-500", icon: "📦" },
+                  { label: "Gestão financeira", color: "border-blue-500", icon: "💰" },
+                  { label: "Contador com acesso seguro", color: "border-cyan-500", icon: "🔐" },
+                  { label: "Exportação contábil", color: "border-green-500", icon: "📤" },
+                  { label: "Rastreabilidade", color: "border-amber-500", icon: "🔍" },
+                ].map((step, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.1 + idx * 0.1 }}
+                    className={`glass-card p-4 border-t-2 ${step.color} text-center flex flex-col items-center gap-2`}
+                  >
+                    <div className="text-2xl">{step.icon}</div>
+                    <p className="text-sm font-semibold text-white">{step.label}</p>
+                    {idx < 4 && <ChevronDown className="text-gray-500 hidden md:block rotate-[-90deg] absolute -right-3" size={16} />}
+                  </motion.div>
+                ))}
+              </div>
 
+              {/* Três blocos de valor */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 0.3 }}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.6 }}
                   className="glass-card p-8 border-l-4 border-blue-500"
                 >
-                  <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold text-white mb-2">Gestão financeira</h3>
-                      <p className="text-gray-300">Cliente organiza receitas, despesas e anexos</p>
-                    </div>
-                    <ChevronDown className="text-blue-400 md:hidden" size={24} />
-                    <ChevronDown className="text-blue-400 hidden md:block rotate-90" size={24} />
-                  </div>
+                  <div className="text-3xl mb-3">👤</div>
+                  <h3 className="text-lg font-bold text-white mb-2">Cliente</h3>
+                  <p className="text-gray-300 text-sm">Organiza receitas, despesas e anexos no seu workspace</p>
                 </motion.div>
 
                 <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.7 }}
                   className="glass-card p-8 border-l-4 border-cyan-500"
                 >
-                  <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold text-white mb-2">Contador com acesso seguro</h3>
-                      <p className="text-gray-300">Sistema gera exportações contábeis auditáveis</p>
-                    </div>
-                  </div>
+                  <div className="text-3xl mb-3">📊</div>
+                  <h3 className="text-lg font-bold text-white mb-2">Contador</h3>
+                  <p className="text-gray-300 text-sm">Acompanha clientes sem alterar saldo indevidamente</p>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.8 }}
+                  className="glass-card p-8 border-l-4 border-green-500"
+                >
+                  <div className="text-3xl mb-3">📋</div>
+                  <h3 className="text-lg font-bold text-white mb-2">Sistema</h3>
+                  <p className="text-gray-300 text-sm">Gera exportações contábeis auditáveis com rastreabilidade</p>
                 </motion.div>
               </div>
             </div>
@@ -318,8 +339,8 @@ export default function Home() {
                   highlight
                 />
                 <DeliveryCard
-                  title="AuditLog"
-                  description="Registro de ações sensíveis"
+                  title="AuditLog e rastreabilidade"
+                  description="Registro completo de ações sensíveis e rastreabilidade"
                   icon={<Shield size={24} />}
                   delay={0.7}
                 />
@@ -372,13 +393,13 @@ export default function Home() {
                   },
                   {
                     title: "Dados e Segurança",
-                    items: ["PostgreSQL", "Prisma ORM", "RLS", "RBAC", "JWT"],
+                    items: ["PostgreSQL", "Prisma ORM", "Migrations", "RLS", "RBAC", "JWT", "Middlewares"],
                     icon: "🔐",
                     delay: 0.3,
                   },
                   {
-                    title: "Qualidade",
-                    items: ["Vitest", "Supertest", "GitHub PR checks", "Cloudflare R2"],
+                    title: "Qualidade e Arquivos",
+                    items: ["Vitest", "Supertest", "Typecheck", "GitHub PR checks", "Cloudflare R2 (S3-compatible)", "SHA-256", "Windows-1252"],
                     icon: "✅",
                     delay: 0.4,
                   },
@@ -507,8 +528,9 @@ export default function Home() {
                     <div className="text-5xl mb-4">{demo.icon}</div>
                     <h3 className="text-xl font-bold text-white mb-2">{demo.title}</h3>
                     <p className="text-gray-300 mb-4">{demo.desc}</p>
-                    <div className="w-full h-32 bg-background/50 rounded-lg border border-border flex items-center justify-center">
-                      <p className="text-sm text-gray-400">Inserir vídeo da demonstração aqui</p>
+                    <div className="w-full h-48 bg-background/50 rounded-lg border border-border flex items-center justify-center gap-2">
+                      <span className="text-lg">📹</span>
+                      <p className="text-sm text-gray-400">Inserir vídeo ou screenshot aqui</p>
                     </div>
                   </motion.div>
                 ))}
@@ -568,6 +590,17 @@ export default function Home() {
                 ))}
               </div>
 
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.35 }}
+                className="glass-card p-6 border-l-4 border-cyan-500 mb-6"
+              >
+                <p className="text-gray-300 text-sm italic">
+                  Cada etapa garante <span className="text-white font-semibold">controle humano</span> sobre o que a IA produz, com revisão técnica obrigatória antes do merge.
+                </p>
+              </motion.div>
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
                   { title: "SDD", desc: "Especificação antes da implementação", icon: "📝" },
@@ -618,27 +651,32 @@ export default function Home() {
                 {[
                   {
                     title: "Validação contábil externa limitada",
+                    impact: "Menos acesso a validações práticas com contador",
                     decision: "Pesquisa própria e decisões conservadoras",
                     status: "Roadmap",
                   },
                   {
                     title: "IA financeira",
-                    decision: "Risco de falso positivo",
+                    impact: "Risco de falso positivo em classificação",
+                    decision: "Adiada para roadmap futuro",
                     status: "Roadmap",
                   },
                   {
                     title: "Telegram OCR",
-                    decision: "Exigia pipeline seguro",
+                    impact: "Exigia pipeline seguro e validação",
+                    decision: "Evolução futura com segurança",
                     status: "Evolução futura",
                   },
                   {
                     title: "Open Finance",
-                    decision: "Integração externa sensível",
+                    impact: "Integração externa sensível",
+                    decision: "Planejada para pós-MVP",
                     status: "Pós-MVP",
                   },
                   {
                     title: "DAS/DAS-MEI",
-                    decision: "Ainda em consolidação",
+                    impact: "Feature ainda em consolidação",
+                    decision: "Removida desta versão",
                     status: "Fora desta versão",
                   },
                 ].map((challenge, idx) => (
@@ -651,7 +689,8 @@ export default function Home() {
                   >
                     <div className="flex-1">
                       <h3 className="text-lg font-bold text-white mb-1">{challenge.title}</h3>
-                      <p className="text-gray-300 text-sm">{challenge.decision}</p>
+                      <p className="text-gray-400 text-xs mb-1"><span className="text-amber-400 font-semibold">Impacto:</span> {challenge.impact}</p>
+                      <p className="text-gray-400 text-xs"><span className="text-cyan-400 font-semibold">Decisão:</span> {challenge.decision}</p>
                     </div>
                     <div className="px-4 py-2 rounded-full bg-purple-500/20 border border-purple-500 text-purple-300 text-sm font-semibold whitespace-nowrap">
                       {challenge.status}
