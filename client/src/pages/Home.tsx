@@ -513,24 +513,70 @@ export default function Home() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
-                  { title: "Cliente", desc: "Dashboard, transações e anexos", icon: "👤" },
-                  { title: "Contador", desc: "Hub e acesso a clientes", icon: "📊" },
-                  { title: "Segurança", desc: "Tentativa bloqueada de mutação", icon: "🛡️" },
-                  { title: "Exportação", desc: "Validação e geração do TXT Domínio", icon: "📤" },
+                  { 
+                    title: "Cliente", 
+                    desc: "Dashboard, transações e anexos", 
+                    icon: "👤",
+                    topics: [
+                      "Visão geral financeira no dashboard",
+                      "Criação e categorização de transações",
+                      "Upload de comprovantes e anexos",
+                      "Separação clara entre Pessoa Física e Jurídica"
+                    ]
+                  },
+                  { 
+                    title: "Contador", 
+                    desc: "Hub e acesso a clientes", 
+                    icon: "📊",
+                    topics: [
+                      "Hub central com todos os clientes vinculados",
+                      "Acesso rápido aos workspaces dos clientes",
+                      "Visão consolidada do status financeiro",
+                      "Fácil navegação entre múltiplos contextos"
+                    ]
+                  },
+                  { 
+                    title: "Segurança", 
+                    desc: "Tentativa bloqueada de mutação", 
+                    icon: "🛡️",
+                    topics: [
+                      "RBAC restrito por perfil de usuário",
+                      "Simulação de edição por contador (bloqueada)",
+                      "RLS garantindo isolamento no banco de dados",
+                      "Apenas o proprietário altera dados financeiros"
+                    ]
+                  },
+                  { 
+                    title: "Exportação", 
+                    desc: "Validação e geração do TXT Domínio", 
+                    icon: "📤",
+                    topics: [
+                      "Filtragem por período contábil",
+                      "Validação de dados e preenchimento",
+                      "Geração do arquivo TXT padrão Domínio",
+                      "Registro de auditoria e rastreabilidade"
+                    ]
+                  },
                 ].map((demo, idx) => (
                   <motion.div
                     key={idx}
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    className="glass-card p-8 flex flex-col items-center text-center"
+                    className="glass-card p-6 flex flex-col items-center text-center h-full"
                   >
-                    <div className="text-5xl mb-4">{demo.icon}</div>
+                    <div className="text-4xl mb-3">{demo.icon}</div>
                     <h3 className="text-xl font-bold text-white mb-2">{demo.title}</h3>
-                    <p className="text-gray-300 mb-4">{demo.desc}</p>
-                    <div className="w-full h-48 bg-background/50 rounded-lg border border-border flex items-center justify-center gap-2">
-                      <span className="text-lg">📹</span>
-                      <p className="text-sm text-gray-400">Inserir vídeo ou screenshot aqui</p>
+                    <p className="text-gray-300 text-sm mb-4">{demo.desc}</p>
+                    <div className="w-full bg-background/40 rounded-lg border border-border p-4 text-left mt-auto">
+                      <ul className="space-y-2">
+                        {demo.topics.map((topic, i) => (
+                          <li key={i} className="text-sm text-gray-300 flex items-start gap-2">
+                            <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-1.5 flex-shrink-0" />
+                            <span>{topic}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </motion.div>
                 ))}
