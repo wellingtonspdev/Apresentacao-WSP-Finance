@@ -80,9 +80,9 @@ export default function Home() {
                 <div className="relative">
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full blur-3xl opacity-30 glow-pulse" />
                   <img
-                    src="/logo.svg"
+                    src="/logo.png"
                     alt="WSP Finance"
-                    className="h-32 md:h-40 lg:h-48 relative z-10"
+                    className="h-32 md:h-40 lg:h-48 relative z-10 object-contain"
                   />
                 </div>
               </motion.div>
